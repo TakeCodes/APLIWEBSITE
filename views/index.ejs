@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Title Predictor</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 600px;
+      margin-top: 50px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Job Title Predictor</h1>
+    <form id="predictForm" method="post" >
+      <div class="form-group">
+        <label for="Queried_Salary">Select Salary Range:</label>
+        <select class="form-control" id="Queried_Salary" name="Queried_Salary" required>
+          <option value="<80000">Less than ₹80,000</option>
+          <option value="80000-99999">₹80,000 - ₹99,999</option>
+          <option value="100000-119999">₹1,00,000 - ₹1,19,999</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="Skill">Select Your Skills (Hold Ctrl or Cmd to select multiple):</label>
+        <select multiple class="form-control" id="Skill" name="Skill" required>
+          <option value="Python">Python</option>
+          <option value="SQL">SQL</option>
+          <option value="Machine Learning">Machine Learning</option>
+          <option value="Deep Learning">Deep Learning</option>
+          <option value="Data Analysis">Data Analysis</option>
+          <option value="Excel">Excel</option>
+          <option value="Communication">Communication</option>
+          <option value="Power BI">Power BI</option>
+          <option value="Tableau">Tableau</option>
+          <option value="Java">Java</option>
+          <option value="C++">C++</option>
+          <option value="Statistics">Statistics</option>
+          <option value="NLP">NLP</option>
+          <option value="Data Visualization">Data Visualization</option>
+        </select>
+        <small class="form-text text-muted">Choose multiple skills (Ctrl or Cmd + click)</small>
+      </div>
+
+      <input type="hidden" id="No_of_Skills" name="No_of_Skills">
+
+      <button type="submit" class="btn btn-primary btn-block">Predict Job Title</button>
+    </form>
+
+    <div id="result" class="mt-4"></div>
+  </div>
+
+  <script>
+    document.getElementById('predictForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const salary = document.getElementById('Queried_Salary').value;
+      const selectedSkills = Array.from(document.getElementById('Skill').selectedOptions).map(option => option.value);
+      const noOfSkills = selectedSkills.length;
+
+      // Update hidden field
+      document.getElementById('No_of_Skills').value = noOfSkills;
+
+      const inputData = {
+        Queried_Salary: salary,
+        Skill: selectedSkills.join(' '),
+        No_of_Skills: noOfSkills
+      };
+
+      // Example POST request to Flask backend
+      fetch('/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('result').innerHTML = `<div class="alert alert-success text-center">Predicted Job Title: <strong>${data.prediction}</strong></div>`;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('result').innerHTML = `<div class="alert alert-danger text-center">Prediction failed. Please try again.</div>`;
+      });
+    });
+  </script>
+</body>
+</html>

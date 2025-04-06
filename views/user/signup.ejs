@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/css/loginsignup.css" />
+  <title>Signup</title>
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Signup</h2>
+    <form class="auth-form" method="POST" action="/signup">
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="john" required />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="john@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required />
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn">Signup</button>
+    </form>
+
+    <div class="divider"></div>
+
+    <div class="link-bottom">
+      Already have an account? <a href="/login">Login</a>
+    </div>
+  </div>
+</body>
+</html>

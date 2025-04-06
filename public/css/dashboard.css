@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+.dash-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dash-sidebar {
+  width: 240px;
+  background-color: rgba(0, 102, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-logo {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.dash-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.dash-menu li {
+  margin-bottom: 20px;
+}
+
+.dash-menu a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.dash-menu a:hover {
+  color: #93c5fd;
+}
+
+.dash-main {
+  flex-grow: 1;
+  padding: 40px;
+}
+
+.dash-header h1 {
+  margin-bottom: 8px;
+}
+
+.dash-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin: 20px 0;
+}
+
+.dash-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.dash-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.dash-card {
+  background-color: white;
+  padding: 20px;
+  flex: 1 1 200px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.dash-card h4 {
+  font-size: 18px;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.dash-card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #3b82f6;
+}
